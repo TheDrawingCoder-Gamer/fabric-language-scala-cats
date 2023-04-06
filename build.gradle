@@ -75,22 +75,23 @@ jar {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
 }
-
+scaladoc {
+	source = sourceSets.main.scala
+}
 task scaladocJar(type: Jar, dependsOn: scaladoc) {
-	classifier = "scaladoc"
+	classifier = "javadoc"
+	archiveClassifier = "javadoc"
 	from scaladoc.destinationDir
-}
-artifacts {
-	archives scaladocJar
-}
-signing {
-	sign configurations.archives
 }
 // configure the maven publication
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			from components.java
+			// i am losing my marbles
+			// from components.java
+			
+			artifact remapJar
+			artifact remapSourcesJar
 			artifact scaladocJar
 			
 			customizePom(pom, rootProject)
@@ -156,4 +157,7 @@ def customizePom(pom, gradleProject) {
             }
         }
     }
+}
+signing {
+	sign publishing.publications.mavenJava
 }
