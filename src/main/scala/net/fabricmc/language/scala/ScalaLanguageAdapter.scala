@@ -15,8 +15,8 @@ class ScalaLanguageAdapter extends LanguageAdapter {
       if (instance == null) throw new NullPointerException
       instance
     } catch {
-      case _: Exception =>
-        println(s"Unable to find ${aClass.getName}$$MODULE$$")
+      case e: Exception =>
+        println(s"Unable to find ${s}$$MODULE$$")
         aClass.getConstructor().newInstance()
     }
   }

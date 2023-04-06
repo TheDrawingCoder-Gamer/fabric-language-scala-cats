@@ -9,7 +9,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = project.mod_version 
 group = project.maven_group
 
 repositories {
@@ -30,6 +30,13 @@ configurations {
 		extendsFrom includeAndExpose
 	}
 }
+
+configurations.all {
+    resolutionStrategy {
+        failOnNonReproducibleResolution()
+    }
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -40,8 +47,9 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 
-	includeAndExpose "org.scala-lang:scala3-library_3:${project.scala_version}"
-	includeAndExpose "org.typelevel:cats-core_3:${project.cats_version}"
+	includeAndExpose("org.scala-lang:scala3-library_3:${project.scala_version}")
+	includeAndExpose("org.scala-lang:scala-library:2.13.6")
+	includeAndExpose("org.typelevel:cats-core_3:${project.cats_version}")
 	includeAndExpose "org.typelevel:cats-effect-kernel_3:${project.cats_effect_version}"
 	includeAndExpose "org.typelevel:cats-effect-std_3:${project.cats_effect_version}"
 	includeAndExpose "org.typelevel:cats-effect_3:${project.cats_effect_version}"
@@ -71,6 +79,7 @@ java {
 }
 
 jar {
+	from { configurations.include.collect { it.isDirectory() ? it : zipTree(it) } }
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
@@ -108,7 +117,7 @@ publishing {
 		maven {
 			def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
 			def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-			url(version.endsWith('SNAPSHOT') ? snapshotRepo : releaseRepo)
+			url(project.mod_version.endsWith('SNAPSHOT') ? snapshotRepo : releaseRepo)
 			credentials {
 				username ossrhUsername
 				password ossrhPassword

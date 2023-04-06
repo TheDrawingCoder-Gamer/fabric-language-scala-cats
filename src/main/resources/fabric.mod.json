@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "fabric-language-scala-cats",
+	"id": "fabric-language-scala",
 	"version": "${version}",
 	"name": "fabric-language-scala-cats",
 	"description": "scala with forbidden kitty cat",
@@ -9,13 +9,10 @@
 	],
 	"contact": {
 		"homepage": "https://thedrawingcoder-gamer.github.io/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/TheDrawingCoder-Gamer/fabric-language-scala-cats"
 	},
 	"license": "MIT",
-	"mixins": [
-		"fabric-language-scala-cats.mixins.json"
-	],
 	"languageAdapters": {
-		"scala": "net.fabricmc.language.ScalaLanguageAdapter"
+		"scala": "net.fabricmc.language.scala.ScalaLanguageAdapter"
 	}
 }
