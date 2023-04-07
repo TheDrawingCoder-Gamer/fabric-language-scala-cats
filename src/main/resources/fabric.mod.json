@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "fabric-language-scala",
+	"id": "fabric-language-scala-cats",
 	"version": "${version}",
 	"name": "fabric-language-scala-cats",
 	"description": "scala with forbidden kitty cat",
@@ -13,6 +13,6 @@
 	},
 	"license": "MIT",
 	"languageAdapters": {
-		"scala": "net.fabricmc.language.scala.ScalaLanguageAdapter"
+		"scala-cats": "net.bulbyvr.language.scala.ScalaLanguageAdapter"
 	}
 }

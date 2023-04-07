@@ -48,7 +48,7 @@ dependencies {
 
 
 	includeAndExpose("org.scala-lang:scala3-library_3:${project.scala_version}")
-	includeAndExpose("org.scala-lang:scala-library:2.13.6")
+	includeAndExpose("org.scala-lang:scala-library:2.13.10")
 	includeAndExpose("org.typelevel:cats-core_3:${project.cats_version}")
 	includeAndExpose "org.typelevel:cats-effect-kernel_3:${project.cats_effect_version}"
 	includeAndExpose "org.typelevel:cats-effect-std_3:${project.cats_effect_version}"
@@ -79,7 +79,6 @@ java {
 }
 
 jar {
-	from { configurations.include.collect { it.isDirectory() ? it : zipTree(it) } }
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
@@ -115,7 +114,7 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 		maven {
-			def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+			def releaseRepo = "https://s01.oss.sonatype.org/content/repositores/releases"
 			def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
 			url(project.mod_version.endsWith('SNAPSHOT') ? snapshotRepo : releaseRepo)
 			credentials {

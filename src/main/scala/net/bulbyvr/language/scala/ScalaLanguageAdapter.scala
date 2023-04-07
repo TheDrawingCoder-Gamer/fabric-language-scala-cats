@@ -2,7 +2,7 @@
  * This is a drop in replacement for the scala language adapter. This means it WILL conflict with the original!
  */
 
-package net.fabricmc.language.scala
+package net.bulbyvr.language.scala
 
 import net.fabricmc.loader.api.{LanguageAdapter, ModContainer}
 
